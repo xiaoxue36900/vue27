@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello vue</title>
+  </head>
+  <body>
+    <div id="app">
+      {{msg}}
+    </div>
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+      /* 
+       Vue(本身是一个构造函数) 会被注册为一个全局变量
+            语法: new Vue(options)
+            参数: options:配置对象
+            返回值: 新的Vue的实例对象
+
+        new Vue(options)
+            el: 指定根element(选择器) vue的挂载节点;可以写一个选择器字符串
+            获取DOM元素 内部通过querySelector
+
+            data(数据)：用来保存要展示在页面上的动态数据(会变化)
+                       对象;用来存放当前vm实例对象的数据
+                       
+        */
+
+      var vm = new Vue({
+        // el: "#app",
+        data: {
+          msg: "hello Vue",
+        },
+      }).$mount("#app");
+      // 连续调用n次，链式调用 return this ($mount方法是给vue实列对象用的)
+    </script>
+  </body>
+</html>
