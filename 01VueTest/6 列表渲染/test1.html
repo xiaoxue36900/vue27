@@ -7,15 +7,21 @@
   </head>
   <body>
     <!--
-1. 列表显示
-  数组: v-for / index
-  对象: v-for / key
-2. 列表的更新显示
-  删除item
-  替换item
+      v-for
+        控制一个元素的循环;
+        v-for指令的值有别于其他指令;其他指令的值一般都是一个单一的js表达式;
+        可以v-for指令的值:
+            (item,index) in 数组     :key="index"
+            (val,key,index) in 对象  :key="index"
+      1. 列表显示
+        数组: v-for / index
+        对象: v-for / key
+      2. 列表的更新显示
+        删除item
+        替换item
 -->
 
-    <div id="demo">
+    <div id="app">
       <h2>测试: v-for 遍历数组</h2>
       <ul>
         <!-- 
@@ -39,15 +45,15 @@
       new Vue({
         data: {
           persons: [
-            { id: 1, name: "jack", age: 20 },
-            { id: 3, name: "rose", age: 18 },
-            { id: 5, name: "jerry", age: 16 },
-            { id: 7, name: "tom", age: 18 },
-            { id: 8, name: "liqiang", age: 38 },
+            { id: 2, name: "苏帕蓬·尤多坎扎纳-黄明明", age: 21 },
+            { id: 3, name: "Perth Tanapon Sukumpantanasan-王骏勇", age: 18 },
+            { id: 6, name: "巴拉奇亚·鲁洛-狮子", age: 26 },
+            { id: 7, name: "皮拉瓦·山坡提拉-暖暖", age: 25 },
+            { id: 9, name: "泰迪", age: 20 },
           ],
-          person: { id: 1, name: "jack", age: 20 },
+          person: { id: 1, name: "博君一肖", age: 20 },
         },
-      }).$mount("#demo");
+      }).$mount("#app");
     </script>
   </body>
 </html>

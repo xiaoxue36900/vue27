@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      p {
+        font-size: 30px;
+        font-weight: 700;
+        color: royalblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p :style="{opacity: opacity }">
+        Vue要记住的api太多了，记不住啊啊啊啊！！！！！
+      </p>
+      <button @click="goDie">不想不活了~</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      /*
+    需求：
+      1. p标签透明度发生变化 0 - 1 - 0
+      2. 点击按钮，销毁vue
+
+    当调用this.$destroy();
+      会自动解绑事件，所以没有DOM事件的内存泄漏
+      数据都是在data或methods中，一般也没有全局变量
+      但是定时器不会清除，所以需要手动清除定时器~
+
+    导致有全局变量，为了干掉一个内存泄漏，反而产生一个新的内存泄漏
+      let timeId = null;
+  */
+
+      new Vue({
+        el: "#app",
+        data: {
+          opacity: 0,
+          timeId: null,
+        },
+        methods: {
+          goDie() {
+            this.$destroy();
+          },
+        },
+        created() {
+          this.timeId = setInterval(() => {
+            let opacity = this.opacity;
+            opacity += 0.01;
+            if (opacity >= 1) {
+              opacity = 0;
+            }
+            this.opacity = opacity;
+            console.log("setInterval()");
+          }, 1000 / 60);
+        },
+        beforeDestroy() {
+          clearInterval(this.timeId);
+        },
+      });
+    </script>
+  </body>
+</html>
