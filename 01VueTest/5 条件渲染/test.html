@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>条件渲染</title>
+  </head>
+  <body>
+    <!--
+      1. 条件渲染指令
+        v-if
+        v-else
+        v-show
+      2. 比较v-if与v-show
+        如果需要频繁切换 v-show 较好
+
+
+      v-if和v-else是一体，配合使用
+          当v-if是true时，就会显示，而v-else就隐藏
+          当v-if是false时，就会隐藏，而v-else就显示
+  
+          当属性值是true时，往往可以省略不写
+
+      v-if 和 v-show 的区别
+        作用：都能实现DOM元素切换显示
+        v-if 在内存中干掉标签对象来实现隐藏，重新显示时会重新创建
+           DOM树中只有要显示的DOM元素，没有隐藏的
+        v-show 通过样式display来控制显示和隐藏的，显示标签没有样式，隐藏标签会加上 display: none
+          DOM树种所有DOM元素都有，只是隐藏的DOM元素有一个隐藏样式而已
+          
+      如果将来要频繁切换样式显示，用哪个性能好？
+        v-show性能好v-，
+          因为v-if要进行更多DOM操作：删除DOM元素，重新创建新的DOM元素
+          而v-show只要切换style样式即可
+
+      v-for
+        控制一个元素的循环;
+        v-for指令的值有别于其他指令;其他指令的值一般都是一个单一的js表达式;
+        可以v-for指令的值:
+            (item,index) in 数组     :key="index"
+            (val,key,index) in 对象  :key="index"
+      -->
+
+    <div id="app">
+      <p v-if="a">我是v-if</p>
+      <!-- <p v-else="true">bbb</p> -->
+      <p v-else>我是v-else</p>
+
+      <p v-if="a">我是v-if222222</p>
+      <p v-else-if="b">我是v-else-if</p>
+      <p v-else>我是v-else111111111</p>
+
+      <p v-show="a">我是v-show</p>
+      <p v-show="!a">我是v-show222222</p>
+
+      <!--这里不能写this，因为内部会自动向vm上查找 -->
+      <button @click="a = !a">点击切换</button>
+    </div>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: "#app",
+        data: {
+          a: true,
+          b: false,
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>class与style绑定</title>
+    <style>
+      .red {
+        color: #348;
+      }
+      .green {
+        color: #982;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>1. class绑定: :class='xxx'</h2>
+
+      <p :class="className">今天晚上吃火锅</p>
+      <button @click="changeColor1">点击切换颜色</button>
+
+      <p :class="{red: isRed, green: !isRed}">An喜欢pete</p>
+      <button @click="changeColor2">点击切换颜色</button>
+
+      <p class="red green">暖暖喜欢钢炮</p>
+      <p :class="['red', 'green']">泰迪喜欢狮子</p>
+
+      <h2>2. style绑定</h2>
+
+      <p style="font-size: 30px; color: rgb(10, 235, 178);">
+        我喜欢巴拉奇亚·鲁洛
+      </p>
+
+      <p :style="{fontSize: size + 'px', color: 'blue', marginLeft: '40px'}">
+        暖暖喜欢狮子
+      </p>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          className: "red",
+          isRed: true,
+          size: 30,
+        },
+        methods: {
+          changeColor1() {
+            this.className = this.className === "red" ? "green" : "red";
+          },
+          changeColor2() {
+            this.isRed = !this.isRed;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
