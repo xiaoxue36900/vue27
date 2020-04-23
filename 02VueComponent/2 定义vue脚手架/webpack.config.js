@@ -1,7 +1,8 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 function resolve(relative) {
-  // __dirname 代表当前文件所在的文件夹绝对路径
-  // __dirname 其实就是项目根目录
   return path.resolve(__dirname, relative);
 }
 
@@ -13,6 +14,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+      },
       {
         test: /\.js$/,
         include: [resolve("src")],
@@ -28,7 +33,7 @@ module.exports = {
         test: /\.css$/,
         include: [resolve("src")],
         use: [
-          "style-loader",
+          "vue-style-loader",
           // 将css编译成js字符串，以commonjs规则插入到js文件中
           "css-loader",
         ],
@@ -40,18 +45,50 @@ module.exports = {
           loader: "url-loader",
           options: {
             limit: 10 * 1024,
-            /*
-              对输出文件进行重命名
-              [hash:10] hash（根据文件生成唯一id值）取10位
-              [ext] 使用原来文件扩展名
-            */
+            name: "static/media/[hash:10].[ext]",
+          },
+        },
+      },
+      {
+        exclude: [
+          /\.js$/,
+          /\.css$/,
+          /\.html$/,
+          /\.(png|gif|jpe?g|webp)$/,
+          /\.vue$/,
+        ],
+        use: {
+          loader: "file-loader",
+          options: {
             name: "static/media/[hash:10].[ext]",
           },
         },
       },
     ],
   },
-  plugins: [],
-
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: resolve("public/index.html"),
+    }),
+    new VueLoaderPlugin(),
+    new CopyPlugin([
+      {
+        from: resolve("public"),
+        to: resolve("dist"),
+        ignore: ["index.html"],
+      },
+    ]),
+  ],
   mode: "development",
+  devServer: {
+    contentBase: resolve("dist"),
+    port: 9527,
+    host: "localhost",
+    compress: true,
+    open: true,
+    hot: true,
+    quiet: true,
+    clientLogLevel: "none",
+  },
+  devtool: "cheap-module-source-map", // 开发环境
 };
