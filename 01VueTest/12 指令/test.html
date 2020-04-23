@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>指令</title>
+  </head>
+  <body>
+    <div id="app">
+      <span>{{text}}</span>
+      <br /><br /><br />
+      <span v-text="text"></span>
+      <br /><br /><br />
+      <span v-html="text"></span>
+      <br /><br /><br />
+      <button @click="test">按钮</button>
+      <br /><br /><br />
+      <span v-once="true">{{content}}</span>
+      <br /><br /><br />
+      <span v-once>{{content}}</span><br />
+      <br /><br /><br />
+      <input type="text" ref="msgInput" />
+      <br /><br /><br />
+      <button @click="test1">按钮</button>
+    </div>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        data: {
+          text: "<span>An喜欢pete~</span>",
+          content: "黄明明",
+        },
+        methods: {
+          test() {
+            this.content++;
+          },
+          test1() {
+            console.log(this.$refs.msgInput);
+            console.log(this.$refs.msgInput.value);
+          },
+        },
+      }).$mount("#app");
+    </script>
+  </body>
+</html>

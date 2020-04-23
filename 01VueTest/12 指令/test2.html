@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>指令2</title>
+  </head>
+  <body>
+    <div id="app">
+      <p v-text="msg"></p>
+      <p v-upper-text="msg"></p>
+      <p v-lower-text="msg"></p>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      // 定义全局指令
+      Vue.directive("lower-text", function (el, binding) {
+        el.textContent = binding.value.toLowerCase();
+      });
+      new Vue({
+        data: {
+          msg: "Hello Atguigu",
+        },
+        // 自定义指令 / 局部指令：只对当前vm生效
+        directives: {
+          // 定义v-upper-text指令，v-会自动补充
+          "upper-text"(el, binding) {
+            el.textContent = binding.value.toUpperCase();
+          },
+        },
+      }).$mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{msg}}</p>
+      <button @click="msg += '我增加了！！！！！！'">按钮</button>
+      <ul>
+        <li v-for="(value, key) in person">
+          {{key}} -- {{value}}
+        </li>
+      </ul>
+      <button @click="person.age++">按钮</button>
+
+      <ul>
+        <li v-for="(person) in persons" :key="person.id">
+          {{person.id}} -- {{person.name}}
+        </li>
+      </ul>
+      <button @click="test">按钮</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        data: {
+          // data中的数据都是响应式数据
+          msg: "今天风很大呀！！",
+          person: {
+            name: "狮子",
+            age: 26,
+          },
+          persons: [
+            { id: 1, name: "明明" },
+            { id: 2, name: "泰迪" },
+            { id: 3, name: "狮子" },
+            { id: 4, name: "钢炮" },
+            { id: 5, name: "暖暖" },
+          ],
+        },
+        methods: {
+          test() {
+            this.persons = [];
+          },
+        },
+      }).$mount("#app");
+    </script>
+  </body>
+</html>

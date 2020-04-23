@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>组件1</title>
+  </head>
+  <body>
+    <div id="app">
+      <title-component></title-component>
+    </div>
+    <script src="../../01VueTest/js/vue.js"></script>
+    <script>
+      const Title = Vue.extend({
+        data() {
+          return {
+            title: "博郡一笑~",
+          };
+        },
+        template: "<h1>{{title}}</h1>",
+      });
+      console.log(Title);
+      // 2. 全局注册一个组件(确定组件名称)
+      Vue.component("title-component", Title);
+      new Vue({}).$mount("#app");
+    </script>
+  </body>
+</html>

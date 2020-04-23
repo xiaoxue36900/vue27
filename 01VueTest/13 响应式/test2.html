@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{msg}}</p>
+      <button @click="msg++">按钮</button>
+      <p>{{msg2}}</p>
+      <button @click="msg2++">按钮</button>
+      <ul>
+        <li v-for="(value, key) in person">
+          {{key}} -- {{value}}
+        </li>
+      </ul>
+      <button @click="test">按钮</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+
+    <script>
+      new Vue({
+        data() {
+          // 非响应式数据
+          this.msg2 = 890;
+          // 返回值就是data数据 - 响应式数据
+          return {
+            msg: 279,
+            person: {
+              name: "damo",
+            },
+          };
+        },
+        methods: {
+          test() {
+            this.$set(this.person, "age", 20);
+          },
+        },
+      }).$mount("#app");
+    </script>
+  </body>
+</html>
