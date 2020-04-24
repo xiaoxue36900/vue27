@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Storage</title>
+  </head>
+  <body>
+    <script>
+      const user = { name: "jack", age: 18 };
+      console.log(JSON.parse(sessionStorage.getItem("user"))); // 读取不存在的值，返回值是null
+    </script>
+  </body>
+</html>

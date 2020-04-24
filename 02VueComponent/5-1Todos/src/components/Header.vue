@@ -21,16 +21,15 @@ export default {
   },
   methods: {
     handleEnter() {
-      // 添加todo
       const name = this.name.trim();
 
       if (!name) {
         alert("请输入内容~");
         return;
       }
-      this.addTodo(name);
 
-      // 清空输入数据
+      // this.addTodo({ id: Date.now(), name, completed: false });
+      this.addTodo(name);
       this.name = "";
     },
   },

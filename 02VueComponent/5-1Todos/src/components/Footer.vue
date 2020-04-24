@@ -32,7 +32,6 @@ export default {
   },
   computed: {
     completedLength() {
-      // 属性读取的方法
       let length = 0;
       this.todos.forEach((todo) => {
         if (todo.completed) {

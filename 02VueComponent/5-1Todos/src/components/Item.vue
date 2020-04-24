@@ -28,12 +28,21 @@ export default {
     };
   },
   methods: {
+    /* handleEnter() {
+      // 显示当前元素背景色 #ccc 同时显示删除按钮
+      this.bgColor = "#ccc";
+      this.isShow = true;
+    },
+    handleLeave() {
+      // 显示当前元素背景色 #fff 同时隐藏删除按钮
+      this.bgColor = "#fff";
+      this.isShow = false;
+    }, */
     handleEnter(isEnter) {
       this.isShow = isEnter;
       this.bgColor = isEnter ? "#ccc" : "#fff";
     },
     handleDel() {
-      // 所有删除操作都要给与一定的警告提示（防止用户误操作）
       if (window.confirm("你确认要删除当前todo数据吗?")) {
         this.delTodo(this.todo.id);
       }
@@ -45,8 +54,6 @@ export default {
         return this.todo.completed;
       },
       set(val) {
-        // 设置属性调用的方法
-        // 调用父组件的方法更新数据
         this.updateTodo(this.todo.id, val);
       },
     },
